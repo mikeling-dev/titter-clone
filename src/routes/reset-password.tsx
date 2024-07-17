@@ -1,6 +1,5 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import {
-  Button,
   Error,
   Input,
   Wrapper,
@@ -10,7 +9,7 @@ import {
   Switcher,
 } from "../components/auth-components";
 import { sendPasswordResetEmail } from "firebase/auth";
-import { ChangeEvent, FormEvent, ReactEventHandler, useState } from "react";
+import { useState } from "react";
 import { auth } from "./firebase";
 import { FirebaseError } from "firebase/app";
 
@@ -18,8 +17,7 @@ export default function ResetPassword() {
   const [isLoading, setIsLoading] = useState(false);
   const [email, setEmail] = useState("");
   const [error, setError] = useState("");
-  const [sent, setSent] = useState(false);
-  const navigate = useNavigate();
+
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(e.target.value);
   };

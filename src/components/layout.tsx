@@ -10,6 +10,7 @@ const Wrapper = styled.div`
   height: 100%;
   max-width: 860px;
   overflow: hidden;
+  margin-right: 10px;
 `;
 
 const Menu = styled.div`

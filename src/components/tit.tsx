@@ -12,13 +12,14 @@ import React, { useState } from "react";
 
 const Wrapper = styled.div`
   display: grid;
-  grid-template-columns: 3fr 1fr;
+  grid-template-columns: 5fr 1fr;
   padding: 20px;
   border: 1px solid rgba(255, 255, 255, 0.5);
   border-radius: 15px;
   /* border-left: 0px;
   border-right: 0px; */
   margin: 10px 0px;
+  margin-right: 8px;
 `;
 
 const Column = styled.div`
@@ -35,6 +36,21 @@ const ProfilePic = styled.img`
   height: 30px;
   width: 30px;
   border-radius: 15px;
+  background-color: gray;
+`;
+
+const TempPic = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 30px;
+  width: 30px;
+  background-color: gray;
+  border-radius: 15px;
+  svg {
+    height: 28px;
+    width: 28px;
+  }
 `;
 
 const Username = styled.span`
@@ -42,10 +58,13 @@ const Username = styled.span`
   font-size: 18px;
 `;
 
-const Payload = styled.span`
+const Payload = styled.p`
   margin: 10px 0px;
+  margin-right: 10px;
+  max-width: 300px;
   font-size: 18px;
-  /* white-space: pre-wrap; */
+  white-space: pre-wrap;
+  word-wrap: break-word;
 `;
 
 const EditInput = styled.textarea`
@@ -188,15 +207,30 @@ export default function Tit({
     <Wrapper>
       <Column>
         <UserInfo>
-          <ProfilePic src={profilePic} />
+          {profilePic ? (
+            <ProfilePic src={profilePic} />
+          ) : (
+            <TempPic>
+              <svg
+                fill="black"
+                viewBox="0 0 16 16"
+                xmlns="http://www.w3.org/2000/svg"
+                aria-hidden="true"
+              >
+                <path
+                  clipRule="evenodd"
+                  fillRule="evenodd"
+                  d="M15 8A7 7 0 1 1 1 8a7 7 0 0 1 14 0Zm-6 3.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0ZM7.293 5.293a1 1 0 1 1 .99 1.667c-.459.134-1.033.566-1.033 1.29v.25a.75.75 0 1 0 1.5 0v-.115a2.5 2.5 0 1 0-2.518-4.153.75.75 0 1 0 1.061 1.06Z"
+                />
+              </svg>
+            </TempPic>
+          )}
           <Username>{username}</Username>
         </UserInfo>
         {editing ? (
           <EditInput value={editedTit} onChange={onChange} />
         ) : (
-          <Payload>
-            <pre>{tit}</pre>
-          </Payload>
+          <Payload>{tit}</Payload>
         )}
 
         {userId !== user?.uid ? null : (

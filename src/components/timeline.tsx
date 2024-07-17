@@ -1,6 +1,5 @@
 import {
   collection,
-  getDocs,
   limit,
   onSnapshot,
   orderBy,
@@ -8,9 +7,8 @@ import {
 } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import styled from "styled-components";
-import { db, storage } from "../routes/firebase";
+import { db } from "../routes/firebase";
 import Tit from "./tit";
-import { Unsubscribe } from "firebase/auth";
 
 export interface ITit {
   id: string;

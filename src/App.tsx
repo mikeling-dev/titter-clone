@@ -1,4 +1,4 @@
-import { createBrowserRouter, Outlet, Router, RouterProvider } from "react-router-dom";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { useEffect, useState } from "react";
 import styled, { createGlobalStyle } from "styled-components";
 import reset from "styled-reset";
@@ -15,7 +15,7 @@ import ResetPassword from "./routes/reset-password";
 const router = createBrowserRouter([
   {
     path: "/",
-    element:(
+    element: (
       <ProtectedRoute>
         <Layout />
       </ProtectedRoute>
@@ -23,28 +23,27 @@ const router = createBrowserRouter([
     children: [
       {
         path: "",
-        element: <Home />
+        element: <Home />,
       },
       {
         path: "profile",
-        element: <Profile />
-      }
-    ]
+        element: <Profile />,
+      },
+    ],
   },
-  { 
+  {
     path: "/login",
-    element:<Login />
+    element: <Login />,
   },
-  { 
+  {
     path: "/create-account",
-    element:<CreateAccount />
+    element: <CreateAccount />,
   },
   {
     path: "/reset-password",
-    element: <ResetPassword />
-  }
-
-  ])
+    element: <ResetPassword />,
+  },
+]);
 
 const GlobalStyles = createGlobalStyle`
 ${reset};
@@ -56,30 +55,30 @@ body {
   color: white;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 
-}`
+}`;
 const Wrapper = styled.div`
-  height:100vh;
+  height: 100vh;
   display: flex;
   justify-content: center;
-`
+`;
 
 function App() {
-  const [isLoading, setIsLoading] = useState(true)
-  const init = async() => {
+  const [isLoading, setIsLoading] = useState(true);
+  const init = async () => {
     await auth.authStateReady();
-    setIsLoading(false)
-  }
+    setIsLoading(false);
+  };
 
   useEffect(() => {
-    init()
-  },[])
+    init();
+  }, []);
 
   return (
     <Wrapper>
       <GlobalStyles />
-      {isLoading ? <LoadingScreen/> : <RouterProvider router={router}/>}
+      {isLoading ? <LoadingScreen /> : <RouterProvider router={router} />}
     </Wrapper>
-  )
+  );
 }
 
-export default App
+export default App;
